@@ -134,9 +134,9 @@ and open the template in the editor.
        
    
          $servername = "localhost";
-        $username = "root";
-        $password = "";
-        $dbname = "logintest";
+        $username = "webuser";
+        $password = "password";
+        $dbname = "X_Med";
        // $user=$_POST['username'];
          //$pword=$_POST['password'];
         // $checkpword=$_POST['confirmpass'];
@@ -155,7 +155,7 @@ and open the template in the editor.
         
         //====================================================================
         //=====  CHECK EXSITING USERNAME======
-        $checkuser="SELECT Username FROM userdatabase WHERE 1 ";
+        $checkuser="SELECT Username FROM users WHERE 1 ";
         $result = $conn->query($checkuser);
 
         if ($result->num_rows > 0) {
@@ -183,7 +183,7 @@ and open the template in the editor.
             
             //=======================get current id=======================
         
-         $checkuser="SELECT ID FROM userdatabase WHERE 1 ";
+         $checkuser="SELECT ID FROM users WHERE 1 ";
         $result = $conn->query($checkuser);
         
 
@@ -204,7 +204,7 @@ and open the template in the editor.
         //===========================================================
      
             
-        $sql = "INSERT INTO userdatabase (ID,Username, Password, name,email,address)VALUES ('".$ID."','".$user."', '".$pass."', '".$name."', '".$email."', '".$mail."')";
+        $sql = "INSERT INTO users (ID,Username, Password, name,email,address)VALUES ('".$ID."','".$user."', '".$pass."', '".$name."', '".$email."', '".$mail."')";
 
         if ($conn->query($sql) === TRUE) {
         echo "New record created successfully";
