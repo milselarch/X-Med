@@ -1,0 +1,229 @@
+* {
+    font-family: "Open sans", sans-serif;
+} *::selection {
+    background: #ffb352; /* #FF8F00 */
+    color: white;
+}
+
+body {
+	margin: 0%;
+	padding: 0%;
+}
+
+p {
+    font-family: 'Dosis';
+    margin: 0.1em;
+    font-size: 1.4em;
+    color: #333333;
+    
+} p#removeBttn {
+    margin-top: 0.5rem;
+    display: inline;
+    min-width: 0;
+} p#removeBttn:hover {
+    color: #eb4168;
+    cursor: pointer;
+} p#removeBttn:active {
+    color: #d8375c;
+    cursor: pointer;
+} p#removeBttn::selection {
+    color: inherit;
+    background: inherit;
+}
+
+h1#Name {
+	font-family: 'Dosis' /*'Comfortaa',*/ ,calibri;
+	font-size: 3.5em;
+    font-weight: 100;
+    /*background-color: #6699FF;*/
+    width: 93%;
+    
+    padding-left: 7%;
+    padding-bottom: 2%;
+    
+    color: #121212;
+    
+    margin-right: 0%;
+    margin-left: 0%;
+    margin-bottom: 0%;
+    margin-top: 5rem;
+        
+} h1#Name::selection {
+    background-color: transparent;
+    color: #121212;
+}
+
+div.centered {
+	position: absolute;
+	top: 0%;
+	left: 50%;
+	/* bring your own prefixes */
+	transform: translate(-50%, 0);
+	width: 84%;
+    margin-bottom: 2rem;
+	/* height: 80%; */
+	/*height: 10030px;*/
+	/* background-color: #6699FF; */
+	/* css property for element displacement */
+
+} div #fieldData {
+    padding-left: 7%; 
+    width: 93%;
+} div #formDiv {
+    width: 40%;
+    margin-right: 10%;
+    display: inline-block;
+} div #tableDiv {
+    width: 50%;
+    float: right;
+    height: 65vh;
+    overflow-y: auto;
+    
+} div #qrcode {
+    margin-top: 2rem;
+    float: left;
+} div #buttonDiv {
+    display: inline-block;
+}
+
+/*
+.header-fixed {
+    width: 100%;
+    table-layout: fixed;
+}
+.header-fixed > thead,
+.header-fixed > tbody,
+.header-fixed > thead > tr,
+.header-fixed > tbody > tr,
+.header-fixed > thead > tr > th,
+.header-fixed > tbody > tr > td {
+    display: block;
+}
+.header-fixed > tbody > tr:after,
+.header-fixed > thead > tr:after {
+    content: ' ';
+    display: block;
+    visibility: hidden;
+    clear: both;
+}
+.header-fixed > tbody {
+    overflow-y: auto;
+    height: 60vh;
+}
+.header-fixed > tbody > tr > td,
+.header-fixed > thead > tr > th {
+    width: 50vh;
+    float: left;
+} .header-fixed > tbody > tr:nth-child(1) > td {
+    border: none;
+}
+*/
+
+table.table {
+    table-layout: fixed;
+    float: right;    
+} table.table tbody > tr td:nth-child(1), table.table thead th:nth-child(1) {
+    width: 20%;
+} table.table tbody > tr td:nth-child(2), table.table thead th:nth-child(2) {
+    width: 80%
+} table.table tbody tr td {
+    word-wrap: break-word;
+}
+
+img::selection {
+    background: transparent;  
+} div #qrcode img {
+    padding-right: 2rem;
+}
+
+input {
+    position: relative;
+    font-family: 'Dosis';
+    color: #333333;
+    font-size: 1.2em;
+    padding: 0.8%;
+}
+
+button {
+    font-family: 'Dosis', sans-serif;
+    font-size: 3rem;
+    /* margin-top: 0.5rem; */
+    background-color: #6699FF; 
+    color: white;
+    border: 0 none;
+    border-radius: 0.2rem;
+    border-width: 0;
+    padding-right: 2rem;
+    padding-left: 2rem;
+    
+} button::-moz-focus-inner {
+    border: 0;
+
+} button:hover {
+    background: #4a8bec;
+} button:active { 
+    background: #2d7cd8; 
+    border: 0 none;
+
+} button::selection, button b::selection {
+    background-color: transparent;
+
+} button#add_bttn {
+    margin-top: 2rem;
+    margin-left: 0rem;
+    font-family: 'Dosis', sans-serif;
+    font-size: 3rem;
+    padding 0;
+}
+
+input[type='submit'] {
+    clear: both;
+    float: left;
+    
+    margin-top: 5rem;
+    
+    font-family: 'Dosis', sans-serif;
+    font-size: 3rem;
+    /* margin-top: 0.5rem; */
+    background-color: #6699FF; 
+    color: white;
+    border: 0 none;
+    border-radius: 0.2rem;
+    border-width: 0;
+    padding-right: 2rem;
+    padding-left: 2rem;
+    
+} input[type='submit']::-moz-focus-inner {
+    border: 0;
+} input[type='submit']:hover {
+    background: #4a8bec;
+} input[type='submit']:active { 
+    background: #2d7cd8; 
+    border: 0 none;
+} input[type='submit']::selection, input[type='submit'] b::selection {
+    background-color: transparent;
+}
+
+textarea {
+    position: relative;
+    font-family: 'Dosis';
+    font-size: 1.2em;
+    padding: 0.75rem;
+    width: 99%;
+    resize: none;
+
+    border: solid 2px #ddd;
+    line-height: 1;
+    overflow: auto;
+    outline: none;
+
+} textarea:hover {
+    border: solid 2px #6699FF;
+} textarea:active {
+    border: solid 2px #2d7cd8;
+}
+
+form {
+    overflow: visible;
+}
+

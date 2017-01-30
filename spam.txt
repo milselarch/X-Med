@@ -1,0 +1,34 @@
+create table medicine (
+    name varchar(128) not null primary key,
+    instructions text not null
+    )
+    
+no need to create seperate ID (initital plan) from medicine name, since meidcine name
+should be unique anyways
+
+QR can be dynamically generated from medicine_name, so no need to store it in server
+
+IF EXISTS (SELECT * FROM medicine where medicine_name = ?)
+    UPDATE medicine SET instructions = ? WHERE medicine_name = ?
+ELSE
+    INSERT INTO medicine VALUES (?, ?);
+    
+INSERT INTO table VALUES(?, ?) ON DUPLICATE KEY UPDATE instructions = ?;
+
+CREATE USER 'webuser'@'localhost' IDENTIFIED BY 'password';
+GRANT alter,delete,index,insert,select,update ON X_Med.* TO 'webuser'@'localhost'
+
+Hey guys, this folder has all the code for the X-Med website
+
+SQL table for X-Med was made using:
+create table medicine (
+    name varchar(128) not null primary key,
+    instructions text not null
+    )
+
+I used user "webuser" to access the sql database from php. if you're lazy you could change it to root in the 3 .php files. Otherwise create user webuser as follows: 
+CREATE USER 'webuser'@'localhost' IDENTIFIED BY 'password';
+GRANT alter,delete,index,insert,select,update ON X_Med.* TO 'webuser'@'localhost'
+
+
+jesus christ when I opened up awseducate in firefox it showed me I had 0 time left - thought I had reset it again but opening on google chrome displayed everything correctly.
