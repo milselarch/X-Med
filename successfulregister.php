@@ -41,7 +41,7 @@ and open the template in the editor.
 	    </div>
 	    <div class="error-actions">
                 
-                    <input type=button onClick="location.href='main.php'" value='click here'>
+                    <input type=button onClick="location.href='index.php'" value='click here'>
 	    </div>
 	</div>
     </div>
