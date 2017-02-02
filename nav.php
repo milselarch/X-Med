@@ -21,7 +21,7 @@
                         <span class="icon-bar"></span>
                     </button>
 
-                    <a class="navbar-brand" href="#">X-Med</a>
+                    <a class="navbar-brand" href="medicine.php">X-Med</a>
                 </div>
 
                 <!-- Collect the nav links, forms, and other content for toggling -->

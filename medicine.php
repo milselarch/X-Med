@@ -22,9 +22,11 @@
             -->
              
             <div id='titleDiv'>
-                <h1 id="Name"> X-Med </h1>
+                <!-- <h1 id="Name"> X-Med </h1>
                 <!-- <div class="slider"> --> 
 			</div>
+           
+            <br/>
             
             <div id='fieldData'>
                 <!-- 

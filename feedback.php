@@ -1,13 +1,21 @@
 <?php
 require "session.php";
 
-$username = $_POST['username'];
+$username = $_SESSION['login_user'];
 $db = new PDO("mysql:host=localhost;dbname=X_Med", "webuser", "password");
 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); // <== add this line
 
 $stars = 0;
 if (isset($_POST['star'])) {
     $stars = $_POST['star'];
+    
+    $stmt = $db->prepare("
+        INSERT INTO ratings (rating, Username) VALUES (:stars, :username)
+        ON DUPLICATE KEY UPDATE rating = :stars
+        ");
+    $stmt->execute(array(":stars" => $stars, ":username" => $username));
+    
+    /*
     $stmt = $db->prepare("select count(*) from ratings where Username = ?");
     $stmt->execute(array($username));
     $rows = (int) $stmt->fetchColumn();
@@ -26,9 +34,11 @@ if (isset($_POST['star'])) {
         $sql = "INSERT INTO ratings (rating, Username) VALUES (?, ?);";
         $stmt = $db->prepare($sql);
         $stmt->bindParam(1, $stars, PDO::PARAM_INT);
+        error_log($username);
         $stmt->bindParam(2, $username, PDO::PARAM_STR);
         $stmt->execute();
     }
+    */
 
 } else {
     /* these three lines get number of medicine entries with name $name */
@@ -93,8 +103,6 @@ if (isset($_POST['star'])) {
                     
                     //console.log("STARS1", <?php echo $stars ?>);
                 </script>
-                
-                <?php echo json_encode($_POST); ?>
                 
                 <input type="submit" name="submit"/>
             </form>

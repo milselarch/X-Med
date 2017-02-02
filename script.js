@@ -10,14 +10,16 @@ to-do
 
 function addRowToTable(action, name, instructions) {
     'use strict';
-    var htmlName, row;
+    var htmlName, newElement, row;
     htmlName = JSON.stringify("medicine_" + name);
     console.log(name, instructions);
     
     if (action === "insert") {
         $('table tbody').append(
-            "<tr name=" + htmlName + ">" + "<td>" + name + "</td>"
-                + "<td>" + instructions + "</td>" + "</tr>"
+            $("<tr name=" + htmlName + ">").append(
+                $('<td/>').text(name),
+                $('<td/>').text(instructions)
+            ) 
         );
         console.log("APPENDED");
 
@@ -27,6 +29,7 @@ function addRowToTable(action, name, instructions) {
 
     } else if (action === "remove") {
         row = 'table tbody tr[name=' + htmlName + ']';
+        console.log(row);
         $(row).remove();
         
     } else {
@@ -87,9 +90,32 @@ $(document).ready(function () {
         }
     });
     
+    
+    $('table#medicineTable').on('click', 'tr', function () {
+        console.log($(this).attr('name'));
+        $('table#medicineTable *').removeClass('clicked');
+        $('table#medicineTable *').remove('div.images');
+        $(this).addClass('clicked');
+        
+        $(this).children('td').eq(1).append(
+            $('<div/>', {class: "images"}).append(
+                // lambda function to generate 20 images
+                (function () {
+                    var stuff = '';
+                    for (var k=0; k<20; k++) {
+                        stuff += "<img src='https://i.ytimg.com/vi/S40r0jGT1cQ/maxresdefault.jpg'/>";
+                    }
+                    return stuff;
+                }) ()
+            )
+        )
+    })
+    
 
     // Bind to the submit event of our form
     console.log("potato", $("p#removeBttn"));
+    
+    
     $("p#removeBttn").click(function (event) {
         var form, name, instructions, inputs;
         console.log('hiya');
@@ -126,8 +152,11 @@ $(document).ready(function () {
                 action       = result[0];
                 name         = result[1];
                 instructions = result[2];
+                
+                console.log(action);
 
                 if (action === 'remove') {
+                    //console.log("REMOVING");
                     addRowToTable('remove', name, instructions);
                 }
                 
