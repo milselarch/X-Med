@@ -1,7 +1,11 @@
 <?php
 require 'session.php';
 
-$medicine = $_SESSION["medicineName"];
+$medicine = $_POST["medicineName"];
+$_SESSION["medicineName"] = $medicine;
+error_log($medicine);
+//$_GET["medicineName"] = $medicine;
+
 $username = $_SESSION['login_user'];
 $db = new PDO("mysql:host=localhost;dbname=X_Med", "webuser", "password");
 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); // <== add this line

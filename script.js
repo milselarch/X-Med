@@ -10,18 +10,30 @@ to-do
 
 function addRowToTable(action, name, instructions) {
     'use strict';
-    var htmlName, newElement, row;
+    var htmlName, newElement, pictureElement, medicineName, row;
     htmlName = JSON.stringify("medicine_" + name);
     console.log(name, instructions);
     
     if (action === "insert") {
-        $('table tbody').append(
-            $("<tr name=" + htmlName + ">").append(
-                $('<td/>').text(name),
-                $('<td/>').text(instructions)
-            )
+        newElement = $("<tr name=" + htmlName + ">").append(
+            $('<td/>').text(name),
+            $('<td/>').text(instructions)
         );
+        
+        $('table tbody').append(newElement);
         console.log("APPENDED");
+        
+        pictureElement = $(
+            "<iframe id='picture' scrolling='no'/>",
+            {'class': "images"}
+        );
+        
+        pictureElement.attr('src', 'picture.php?' + $.param({'medicineName': name}));
+        newElement.children('td').eq(0).append(pictureElement);
+        pictureElement.on('load', function () {
+            console.log("CHEIGHT", pictureElement.contents().height());
+            pictureElement.height(pictureElement.contents().height());
+        });
 
     } else if (action === "update") {
         row = 'table tbody tr[name=' + htmlName + '] td:nth-child(2)';
@@ -101,23 +113,9 @@ $(document).ready(function () {
         medicineName = $(this).attr('name');
         medicineName = medicineName.substr(medicineName.indexOf('_') + 1);
         $('table#medicineTable *').removeClass('clicked');
-        $('table#medicineTable *').remove('iframe#picture');
         $(this).addClass('clicked');
         
         $("textarea[name='medicineName']").val(medicineName);
-                
-        pictureElement = $(
-            "<iframe id='picture' scrolling='no'/>",
-            {'class': "images"}
-        );
-        
-        pictureElement.attr('src', 'picture.php?' + $.param({'medicineName': medicineName}));
-        $(this).children('td').eq(0).append(pictureElement);
-        
-        pictureElement.on('load', function () {
-            console.log("CHEIGHT", pictureElement.contents().height());
-            pictureElement.height(pictureElement.contents().height());
-        });
     });
 
     // Bind to the submit event of our form

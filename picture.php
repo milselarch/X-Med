@@ -1,10 +1,14 @@
 <?php
-require 'session.php';
-if (isset($_GET['medicineName'])) {
-    $_SESSION['medicineName'] = $_GET['medicineName'];
-}
+require "session.php";
 
-$medicine = $_SESSION["medicineName"];
+if (isset($_GET["medicineName"])) {
+    $medicine = $_GET["medicineName"];
+    
+} elseif (isset($_SESSION["medicineName"])) {
+    $medicine = $_SESSION["medicineName"];
+    unset($_SESSION["medicineName"]);
+};
+
 $username = $_SESSION['login_user'];
 $db = new PDO("mysql:host=localhost;dbname=X_Med", "webuser", "password");
 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); // <== add this line
@@ -53,9 +57,10 @@ if ($stmt->rowCount() == 0) {
     
     <body>
         <form id="mainForm" action="upload.php" method="post" enctype="multipart/form-data">
-            <img id="mainImage" src=<?= json_encode($path); ?> />
+            <img id="mainImage" src='<?= $path; ?>' />
             <input type="file" name="fileToUpload" id="fileToUpload">
             <input type="submit" value="Upload Image" name="submit">
+            <input type="text" value='<?= $medicine ?>' name="medicineName">
         </form>
         
     </body>
