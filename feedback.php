@@ -15,31 +15,6 @@ if (isset($_POST['star'])) {
         ");
     $stmt->execute(array(":stars" => $stars, ":username" => $username));
     
-    /*
-    $stmt = $db->prepare("select count(*) from ratings where Username = ?");
-    $stmt->execute(array($username));
-    $rows = (int) $stmt->fetchColumn();
-    error_log("ROWS" . $rows);
-
-    if ($rows > 0) {
-        // update database with new medicine info if it already exists
-        $sql = "UPDATE ratings set rating = ? where Username = ?;";
-        $stmt = $db->prepare($sql);
-        $stmt->bindParam(1, $stars, PDO::PARAM_INT);
-        $stmt->bindParam(2, $username, PDO::PARAM_STR);
-        $stmt->execute();
-    
-    } else {
-        // create new medicine with info in database
-        $sql = "INSERT INTO ratings (rating, Username) VALUES (?, ?);";
-        $stmt = $db->prepare($sql);
-        $stmt->bindParam(1, $stars, PDO::PARAM_INT);
-        error_log($username);
-        $stmt->bindParam(2, $username, PDO::PARAM_STR);
-        $stmt->execute();
-    }
-    */
-
 } else {
     /* these three lines get number of medicine entries with name $name */
     $stmt = $db->prepare("select rating from ratings where Username = ?");
