@@ -1,18 +1,38 @@
 <?php
+require "session.php"
+?>
 
-function curlGoogle($keyword) {
-    $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, 'http://www.google.com/search?hl=en&q=' . urlencode($keyword) . '&btnG=Google+Search&meta=');
-    curl_setopt($ch, CURLOPT_HEADER, 0);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($ch, CURLOPT_FILETIME, true);
-    $data = curl_exec($ch);
-    echo $data;
-    curl_close($ch);
-    return $data;
-}
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+        <script type="text/javascript" src="QR%20code/qrcode.min.js"></script>
+        <script src="script.js"></script>
 
-// Return goole Search Result
-echo curlGoogle($_POST['search']);
+        <link href="https://fonts.googleapis.com/css?family=Dosis" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Roboto+Slab" rel="stylesheet">
+        
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <link rel="stylesheet" type="text/css" href="stylesheet.css">
+    </head>
+    
+    <body>
+        <div class="centered">
+            <?php include_once('nav.php'); ?> 
+       
+            <script>
+              (function() {
+                var cx = '012486766649702085471:ttcuim1egg8';
+                var gcse = document.createElement('script');
+                gcse.type = 'text/javascript';
+                gcse.async = true;
+                gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+                var s = document.getElementsByTagName('script')[0];
+                s.parentNode.insertBefore(gcse, s);
+              })();
+            </script>
+            <gcse:searchbox-only></gcse:searchbox-only>
+        </div>
+    </body>
+</html>

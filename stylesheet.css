@@ -80,7 +80,7 @@ div.centered {
 } div #tableDiv {
     width: 50%;
     float: right;
-    overflow-y: auto;
+    overflow-y: scroll;
     
 } div #qrcode {
     margin-top: 2rem;

@@ -47,10 +47,7 @@
                     </ul>
 
                     <form class="navbar-form navbar-left" action="externalSearch.php">
-                        <div class="form-group">
-                        <input name="search" type="text" class="form-control" placeholder="Search">
-                        </div>
-                        <button type="submit" class="btn btn-default">Submit</button>
+                        <button type="submit" class="btn btn-default">External Search</button>
                     </form>
                     
                     

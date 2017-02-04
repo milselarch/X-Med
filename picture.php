@@ -15,7 +15,7 @@ $stmt->execute(array(":medicine" => $medicine));
 $result = $stmt->fetchAll();
 
 if ($stmt->rowCount() == 0) {
-    $path = 'http://icons.iconarchive.com/icons/seanau/flat-app/256/Questionmark-icon.png';
+    $path = 'http://downloadicons.net/sites/default/files/question-icon-80125.png';
     //'https://i.ytimg.com/vi/S40r0jGT1cQ/maxresdefault.jpg';
 } else {
     $path = $result[0]['id'] . "." . $result[0]['ext'];
