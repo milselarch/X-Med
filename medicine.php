@@ -35,7 +35,7 @@
                 everything on the right side is in tableDiv 
                 -->
                 <div id="formDiv">
-                    <form>
+                    <form id="editForm">
                         <p>Name:</p>
                         <textarea 
                             class="form" name="medicineName" 

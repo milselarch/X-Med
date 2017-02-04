@@ -179,7 +179,7 @@ $(document).ready(function () {
         });
     });
     
-    $("form").submit('click', function (event) {
+    $("form#editForm").submit('click', function (event) {
         var form, name, instructions, inputs;
         console.log('hiya');
         
