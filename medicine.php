@@ -34,7 +34,7 @@
                 everything on the left side is in formDiv 
                 everything on the right side is in tableDiv 
                 -->
-                <div id="formDiv">
+                <div id="formDiv">                    
                     <form id="editForm">
                         <p>Name:</p>
                         <textarea 
@@ -44,7 +44,7 @@
 
                         <br/><br/>
                         <p>Instructions:</p>
-                        <textarea class="form" name="medicineData" cols="40" rows="4"></textarea>
+                        <textarea class="form" name="medicineData" cols="40" rows="5"></textarea>
                         <br/>
 
                         <div>
@@ -63,10 +63,12 @@
                     </form>
                 </div>
                 
-                <div id="tableDiv">
-                    <table class="table" id="medicineTable">
-                        <tbody></tbody>
-                    </table>
+                <div id="searchTable">
+                    <div id="tableDiv">                    
+                        <table class="table" id="medicineTable">
+                            <tbody></tbody>
+                        </table>
+                    </div>
                 </div>
                 
             </div>

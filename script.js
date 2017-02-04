@@ -49,6 +49,11 @@ function addRowToTable(action, name, instructions) {
     }
 }
 
+function extractName(medicineName) {
+    'use strict';
+    return medicineName.substr(medicineName.indexOf('_') + 1);
+}
+
 
 $(document).ready(function () {
     'use strict';
@@ -74,11 +79,20 @@ $(document).ready(function () {
     nameElement.on('change keydown paste input', function () {
         // whenever name field (nameElement) content changes, set QR code value arccordingly.
         var name = $.trim($(this).val());
-        console.log(name);
+        //console.log(name);
         qrcode.makeCode(name);
+        
+        $('table#medicineTable').find('tr').each(function () {
+            var rowName = extractName($(this).attr('name'));
+            if (rowName.indexOf(name) !== -1) {
+                $(this).css('display', 'block');
+            } else {
+                $(this).css('display', 'none');
+            }
+        });
     });
     
-    $('div#tableDiv').height($('div#formDiv').height());
+    $('div#searchTable').height($('div#formDiv').height());
     
     //Ajax call to getAll.php to get all medicine entries in database
     request = $.ajax({
@@ -108,14 +122,17 @@ $(document).ready(function () {
     $('table#medicineTable').on('click', 'tr', function () {
         if ($(this).hasClass('clicked')) { return; }
         console.log($(this).attr('name'));
-        var medicineName, pictureElement;
+        var medicineName, medicineData, pictureElement;
         
         medicineName = $(this).attr('name');
+        medicineData = $(this).children('td').eq(1).text();
         medicineName = medicineName.substr(medicineName.indexOf('_') + 1);
         $('table#medicineTable *').removeClass('clicked');
         $(this).addClass('clicked');
         
+        qrcode.makeCode(medicineName);
         $("textarea[name='medicineName']").val(medicineName);
+        $("textarea[name='medicineData']").val(medicineData);
     });
 
     // Bind to the submit event of our form

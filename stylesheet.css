@@ -77,10 +77,19 @@ div.centered {
     width: 40%;
     margin-right: 10%;
     display: inline-block;
-} div #tableDiv {
+
+} div #searchTable {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 0;
+    flex-shrink: 1;
+    flex-basis: 0%;
     width: 50%;
     float: right;
+    
+} div #tableDiv {
     overflow-y: scroll;
+    height: 100%;
     
 } div #qrcode {
     margin-top: 2rem;
@@ -124,6 +133,7 @@ div.centered {
 
 table.table {
     table-layout: fixed;
+    margin-bottom: 0px;
     float: right;    
 } table.table tbody > tr td:nth-child(1), table.table thead th:nth-child(1) {
     width: 22%;
@@ -131,9 +141,12 @@ table.table {
     width: 78%
 } table.table tbody tr td {
     word-wrap: break-word;
+    
 } table.table tbody tr:hover {
     background-color: #8da9f4;
     color: white;
+} table.table tbody tr {
+    background-color: white;
 } table.table tbody tr.clicked {
     background-color: rgb(61, 113, 255);
     color: white;
@@ -212,6 +225,7 @@ input[type='submit'] {
     border: 0 none;
 } input[type='submit']::selection, input[type='submit'] b::selection {
     background-color: transparent;
+
 }
 
 textarea {
