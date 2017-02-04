@@ -38,36 +38,6 @@ function addRowToTable(action, name, instructions) {
 }
 
 
-function iframeform(url) {
-    'use strict';
-    
-    var object = {};
-    object.time = new Date().getTime();
-    object.form = $(
-        '<form action="' + url + '" target="iframe' + object.time + '" method="post" style="display:none;" id="form' + object.time + '" name="form' + object.time + '"></form>'
-    );
-
-    object.addParameter = function (parameter, value) {
-        $("<input type='hidden' />")
-            .attr("name", parameter)
-            .attr("value", value)
-            .appendTo(object.form);
-    };
-
-    object.send = function () {
-        var iframe = $(
-            '<iframe data-time="' + object.time + '" style="display:none;" id="iframe'
-                + object.time + '"></iframe>'
-        );
-        
-        $("body").append(iframe);
-        $("body").append(object.form);
-        object.form.submit();
-        iframe.load(function () {$('#form' + $(this).data('time')).remove();  $(this).remove(); });
-    };
-}
-
-
 $(document).ready(function () {
     'use strict';
     var request, qrcode, width, nameElement, dataElement;
@@ -136,7 +106,12 @@ $(document).ready(function () {
         
         $("textarea[name='medicineName']").val(medicineName);
                 
-        pictureElement = $("<iframe id='picture' src='picture.php' scrolling='no'/>", {'class': "images"});
+        pictureElement = $(
+            "<iframe id='picture' scrolling='no'/>",
+            {'class': "images"}
+        );
+        
+        pictureElement.attr('src', 'picture.php?' + $.param({'medicineName': medicineName}));
         $(this).children('td').eq(0).append(pictureElement);
         
         pictureElement.on('load', function () {
