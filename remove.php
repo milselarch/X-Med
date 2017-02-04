@@ -18,6 +18,10 @@ try {
 
     // delete medicine record if it exists
     if ($rows > 0) {
+        $sql = "delete from imagePaths where name = ?;";
+        $stmt = $db->prepare($sql);
+        $stmt->execute(array($name));
+        
         $sql = "delete from medicine where name = ?;";
         $stmt = $db->prepare($sql);
         $stmt->execute(array($name));

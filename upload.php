@@ -14,7 +14,7 @@ $target_dir = "images/";
 $ext = pathinfo($_FILES["fileToUpload"]["name"], PATHINFO_EXTENSION);
 $target_file = $target_dir . basename(hash('ripemd160', $medicine));
 $target_file_ext = $target_file . ".$ext";
-error_log($target_file);
+error_log($target_file_ext);
 
 $uploadOk = 1;
 $imageFileType = pathinfo($target_file_ext, PATHINFO_EXTENSION);

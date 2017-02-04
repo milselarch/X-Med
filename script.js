@@ -30,7 +30,7 @@ function addRowToTable(action, name, instructions) {
         
         pictureElement.attr('src', 'picture.php?' + $.param({'medicineName': name}));
         newElement.children('td').eq(0).append(pictureElement);
-        pictureElement.on('load', function () {
+        newElement.on('load', function () {
             console.log("CHEIGHT", pictureElement.contents().height());
             pictureElement.height(pictureElement.contents().height());
         });
