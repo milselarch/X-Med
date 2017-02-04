@@ -19,7 +19,7 @@ function addRowToTable(action, name, instructions) {
             $("<tr name=" + htmlName + ">").append(
                 $('<td/>').text(name),
                 $('<td/>').text(instructions)
-            ) 
+            )
         );
         console.log("APPENDED");
 
@@ -66,6 +66,8 @@ $(document).ready(function () {
         qrcode.makeCode(name);
     });
     
+    $('div#tableDiv').height($('div#formDiv').height());
+    
     //Ajax call to getAll.php to get all medicine entries in database
     request = $.ajax({
         url: 'getAll.php',
@@ -92,25 +94,26 @@ $(document).ready(function () {
     
     
     $('table#medicineTable').on('click', 'tr', function () {
+        if ($(this).hasClass('clicked')) { return; }
         console.log($(this).attr('name'));
+        var medicineName, pictureElement;
+        
+        medicineName = $(this).attr('name');
+        medicineName = medicineName.substr(medicineName.indexOf('_') + 1);
         $('table#medicineTable *').removeClass('clicked');
-        $('table#medicineTable *').remove('div.images');
+        $('table#medicineTable *').remove('iframe#picture');
         $(this).addClass('clicked');
         
-        $(this).children('td').eq(1).append(
-            $('<div/>', {class: "images"}).append(
-                // lambda function to generate 20 images
-                (function () {
-                    var stuff = '';
-                    for (var k=0; k<20; k++) {
-                        stuff += "<img src='https://i.ytimg.com/vi/S40r0jGT1cQ/maxresdefault.jpg'/>";
-                    }
-                    return stuff;
-                }) ()
-            )
-        )
-    })
-    
+        $("textarea[name='medicineName']").val(medicineName);
+                
+        pictureElement = $("<iframe id='picture' src='picture.php' scrolling='no'/>", {'class': "images"});
+        $(this).children('td').eq(0).append(pictureElement);
+        
+        pictureElement.on('load', function () {
+            console.log("CHEIGHT", pictureElement.contents().height());
+            pictureElement.height(pictureElement.contents().height());
+        });
+    });
 
     // Bind to the submit event of our form
     console.log("potato", $("p#removeBttn"));

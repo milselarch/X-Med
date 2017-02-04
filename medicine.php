@@ -3,6 +3,7 @@
 	    <meta charset="UTF-8">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
         <script type="text/javascript" src="QR%20code/qrcode.min.js"></script>
+        <script src="iframe-resizer/js/iframeResizer.js"></script>
         <script src="script.js"></script>
 
         <link href="https://fonts.googleapis.com/css?family=Dosis" rel="stylesheet">
