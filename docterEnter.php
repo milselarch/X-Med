@@ -23,7 +23,7 @@ try {
         $action = "update";
     } else {
         // create new medicine with info in database
-        $sql = "INSERT INTO medicine VALUES(?, ?);";
+        $sql = "INSERT INTO medicine (name, instructions) VALUES(?, ?);";
         $stmt = $db->prepare($sql);
         $stmt->execute(array($name, $instructions));
         $action = "insert";

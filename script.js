@@ -86,7 +86,7 @@ $(document).ready(function () {
         $('table#medicineTable').find('tr').each(function () {
             var rowName = extractName($(this).attr('name'));
             if (rowName.indexOf(name) !== -1) {
-                $(this).css('display', 'block');
+                $(this).css('display', 'table-row');
             } else {
                 $(this).css('display', 'none');
             }

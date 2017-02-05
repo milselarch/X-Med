@@ -29,9 +29,6 @@ session_start();
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <link href="assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
 
-    <!-- Custom styles for this template -->
-    <link href="offcanvas.css" rel="stylesheet">
-
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
     <script src="assets/js/ie-emulation-modes-warning.js"></script>
@@ -44,7 +41,7 @@ session_start();
   </head>
 
   <body>
-    <nav class="navbar navbar-fixed-top navbar-inverse" >
+    <nav class="navbar navbar-default" >
       <div class="container" style='color: red;'>
         <div class="navbar-header" >
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -90,9 +87,9 @@ session_start();
         echo $badlogin;
         
         $servername = "localhost";
-        $username = "root";
-        $password = "";
-        $dbname = "logintest";
+        $username = "webuser";
+        $password = "password";
+        $dbname = "X_Med";
        // $user=$_POST['username'];
          //$pword=$_POST['password'];
         // $checkpword=$_POST['confirmpass'];
@@ -163,38 +160,29 @@ session_start();
             <h1>Welcome to X-MED</h1>
             <p style="color: grey; font-weight: bold ">Share . Discover . Discuss</p>
           </div>
-          <p style="font-size: 1cm">Top Medicines</p>
+          
+          
+          <p style="font-size: 1cm">Newest Medicines</p>
           <div class="row">
-            <div class="col-xs-6 col-lg-4">
-              <h2>Heading</h2>
-              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-              <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-            </div><!--/.col-xs-6.col-lg-4-->
-            <div class="col-xs-6 col-lg-4">
-              <h2>Heading</h2>
-              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-              <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-            </div><!--/.col-xs-6.col-lg-4-->
-            <div class="col-xs-6 col-lg-4">
-              <h2>Heading</h2>
-              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-              <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-            </div><!--/.col-xs-6.col-lg-4-->
-            <div class="col-xs-6 col-lg-4">
-              <h2>Heading</h2>
-              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-              <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-            </div><!--/.col-xs-6.col-lg-4-->
-            <div class="col-xs-6 col-lg-4">
-              <h2>Heading</h2>
-              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-              <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-            </div><!--/.col-xs-6.col-lg-4-->
-            <div class="col-xs-6 col-lg-4">
-              <h2>Heading</h2>
-              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-              <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-            </div><!--/.col-xs-6.col-lg-4-->
+            
+            <?php
+            $db = new PDO("mysql:host=localhost;dbname=X_Med", "webuser", "password");
+            $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); // <== add this line
+
+            $stmt = $db->prepare("select name, instructions from medicine order by timestamp limit 6");
+            $stmt->execute();
+      
+            while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                $name = $row["name"];
+                $instructions = $row["instructions"];
+
+                echo "<div class='col-xs-6 col-lg-4'";
+                echo "<h2>$name</h2>";
+                echo "<p>$instructions</p>";
+                echo "</div><!--/.col-xs-6.col-lg-4-->";
+            }
+            ?>
+                  
           </div><!--/row-->
         </div><!--/.col-xs-12.col-sm-9-->
  
@@ -203,13 +191,6 @@ session_start();
               <a href="#" class="list-group-item active">Navigation</a>
             <a href="#" class="list-group-item">FORUM</a>
             <a href="newpage.php" class="list-group-item">NEWS</a>
-            <a href="#" class="list-group-item">Link</a>
-            <a href="#" class="list-group-item">Link</a>
-            <a href="#" class="list-group-item">Link</a>
-            <a href="#" class="list-group-item">Link</a>
-            <a href="#" class="list-group-item">Link</a>
-            <a href="#" class="list-group-item">Link</a>
-            <a href="#" class="list-group-item">Link</a>
           </div>
         </div><!--/.sidebar-offcanvas-->
       </div><!--/row-->

@@ -39,59 +39,30 @@ and open the template in the editor.
 	 <div id="blog" class="row"> 
                 
                   <div class="col-sm-2 paddingTop20">
-            <nav class="nav-sidebar">
-                <div class="list-group">
-              <a href="#" class="list-group-item active">Navigation</a>
-            <a href="#" class="list-group-item">FORUM</a>
-            <a href="#" class="list-group-item">Link</a>
-            <a href="#" class="list-group-item">Link</a>
-            <a href="#" class="list-group-item">Link</a>
-            <a href="#" class="list-group-item">Link</a>
-            <a href="#" class="list-group-item">Link</a>
-            <a href="#" class="list-group-item">Link</a>
-            <a href="#" class="list-group-item">Link</a>
-            <a href="#" class="list-group-item">Link</a>
-          </div>
-            </nav>
-                      <div><h2 class="add">Place for your add!</h2></div>
+
         </div>
              <h1 style="font-weight: bold; color: darkblue; text-decoration: underline;">NEWS AND ANNOUNCEMENTS!</h1>
                  <div class="col-md-10 blogShort">
-                     <h1>Title 1</h1>
-                     <img src="http://www.kaczmarek-photo.com/wp-content/uploads/2012/06/guinnes-150x150.jpg" alt="post img" class="pull-left img-responsive thumb margin10 img-thumbnail">
-                     
+                     <h1>Creation of this site</h1>
                          
                      <article><p>
-                         Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text
-                         ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only 
-                         five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release
-                         of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of
-                         Lorem Ipsum.    
+                         Hi there! I'm super duper glad to be setting up this totally legit website to get medicine information and stuff, which btw is what this site does. We're a team of 3 peeps working to being medicine information together in a single consistent database
                          </p></article>
                      <a class="btn btn-blog pull-right marginBottom10" href="#">READ MORE</a> 
                  </div>
                   <div class="col-md-10 blogShort">
-                     <h1>Title 2</h1>
-                     <img src="http://www.kaczmarek-photo.com/wp-content/uploads/2012/06/DSC_4073-150x150.jpg" alt="post img" class="pull-left img-responsive thumb margin10 img-thumbnail">
+                     <h1>pictures and roles</h1>
+                
                      <article><p>
-                         Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text
-                         ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only 
-                         five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release
-                         of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of
-                         Lorem Ipsum.
+                         We've allowed photo uploads for various medicines, and different types of users: users and view, staff can edit medicine info and admins can change user types from user to staff.
                          </p></article>
                      <a class="btn btn-blog pull-right marginBottom10" href="#">READ MORE</a> 
                  </div>
                  
                   <div class="col-md-10 blogShort">
-                     <h1>Title 3</h1>
-                     <img src="http://www.kaczmarek-photo.com/wp-content/uploads/2012/06/DSC_1681-150x150.jpg" alt="post img" class="pull-left img-responsive thumb margin10 img-thumbnail">
+                     <h1>forums</h1>
                      <article><p>
-                         Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text
-                         ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only 
-                         five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release
-                         of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of
-                         Lorem Ipsum.
+                         We have forums up now! When you login click forums and now you cam char with the community!
                          </p></article>
                      <a class="btn btn-blog pull-right marginBottom10" href="#">READ MORE</a> 
                  </div>
