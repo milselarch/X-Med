@@ -19,7 +19,17 @@ if (isset($_POST['submit'])) {
         $rows = (int) $stmt->fetchColumn();
 
         if ($rows == 1) {
+            $stmt = $db->prepare("select ID, userType from users where Username = ? limit 1");
+            $stmt->execute(array($username));
+            
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+            $userType = $result["userType"];
+            $ID = (int) $result["ID"];
+            
+            $_SESSION['user_type'] = $userType;
             $_SESSION['login_user'] = $username; // Initializing Session
+            //$_SESSION['user_type'] = $ID;
+            
             error_log("VALID");
             header("location: medicine.php"); // Redirecting To Other Page
         } else {
@@ -28,4 +38,3 @@ if (isset($_POST['submit'])) {
         }
     }
 }
-?>

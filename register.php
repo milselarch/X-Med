@@ -204,7 +204,7 @@ and open the template in the editor.
         //===========================================================
      
             
-        $sql = "INSERT INTO users (ID,Username, Password, name,email,address)VALUES ('".$ID."','".$user."', '".$pass."', '".$name."', '".$email."', '".$mail."')";
+        $sql = "INSERT INTO users (ID, Username, Password, name, email, address, userType) VALUES ('".$ID."','".$user."', '".$pass."', '".$name."', '".$email."', '".$mail."', 'user')";
 
         if ($conn->query($sql) === TRUE) {
         echo "New record created successfully";

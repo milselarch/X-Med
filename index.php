@@ -158,6 +158,8 @@ session_start();
             <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle Menu</button>
           </p>
           <div class="jumbotron" >
+            <iframe src="//cdn.bannersnack.com/banners/bxcj29pnb/embed/index.html?userId=27254551&t=1486138227" width="468" height="60" scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen="true"></iframe>
+           
             <h1>Welcome to X-MED</h1>
             <p style="color: grey; font-weight: bold ">Share . Discover . Discuss</p>
           </div>

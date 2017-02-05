@@ -1,11 +1,5 @@
-<?php 
+<?php
 require 'session.php';
-    
-$userType = $_SESSION["user_type"];
-if ($userType == 'user') {
-    header("location: medicine_user.php");
-}
-
 ?>
 
 <html>
@@ -31,11 +25,6 @@ if ($userType == 'user') {
             <!-- 
             centers all the inside content, purely aesthetic
             -->
-             
-            <div id='titleDiv'>
-                <!-- <h1 id="Name"> X-Med </h1>
-                <!-- <div class="slider"> --> 
-			</div>
            
             <br/>
             
@@ -44,34 +33,6 @@ if ($userType == 'user') {
                 everything on the left side is in formDiv 
                 everything on the right side is in tableDiv 
                 -->
-                <div id="formDiv">                    
-                    <form id="editForm">
-                        <p>Name:</p>
-                        <textarea 
-                            class="form" name="medicineName" 
-                            cols="40" rows="1" maxlength="32"
-                        ></textarea>
-
-                        <br/><br/>
-                        <p>Instructions:</p>
-                        <textarea class="form" name="medicineData" cols="40" rows="5"></textarea>
-                        <br/>
-
-                        <div>
-                            <div id="buttonDiv">
-                                <button type="submit" id='add_bttn'>
-                                <b>+</b> Medicine 
-                                </button> <br/>
-                                <p id="removeBttn">remove</p>
-                            </div>
-
-                            <!-- this div will be transformed into a QR code 
-                            by the QR code libary -->
-                            <div id="qrcode"></div>
-
-                        </div>
-                    </form>
-                </div>
                 
                 <div id="searchTable">
                     <div id="tableDiv">                    

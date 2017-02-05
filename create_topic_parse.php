@@ -2,9 +2,11 @@
 require 'session.php';
 
 if (isset($_POST['topic_submit'])) {
-    if (($_POST['topic_title'] == "") && ($_POST['topic_cotent'] == "")) {
-        echo "You did not fill in both fields. Please return to the previous page.";
-        exit();
+    if (($_POST['topic_title'] == "") || ($_POST['topic_content'] == "")) {
+        $cid = $_POST['cid'];
+        
+        $_SESSION["MSSG"] = "You did not fill in both fields. Please return to the previous page.";
+        header("location: create_topic.php?cid=" . $cid);
         
     } else {
         include_once("connect.php");
@@ -25,9 +27,10 @@ if (isset($_POST['topic_submit'])) {
         $res3 = mysqli_query($con,$sql3) or die(mysqli_error($con));
         
         if (($res) && ($res2) && ($res3)) {
-            header("Location: view_topic.php?cid=".$cid."&tid=".$new_topic_id);
+            header("Location: view_topic.php?cid=" . $cid . "&tid=" . $new_topic_id);
         } else {
-            echo "There was a problem creating your topic. Please try again. ";
+            $_SESSION["MSSG"] = "There was a problem creating your topic. Please try again. ";
+            header("location: create_topic.php");
         }
     }
 }

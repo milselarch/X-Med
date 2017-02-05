@@ -1,0 +1,60 @@
+#wrapper{
+    width: 800px;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+a {
+    color: #0000ff;
+}
+
+h2.forum {
+    font-family: 'Dosis', sans-serif;
+    font-size: 3rem;
+    color: #212121;
+}
+
+.cat_links.forum {
+    font-family: 'Open sans', sans-serif;
+    font-size: 1.6rem;
+    display: block;
+    padding: 1rem;
+    
+    text-decoration: none;
+
+    border: 2px solid #ddd;
+    margin-bottom: 1rem;
+    background-color: white;
+    color: #414141;
+
+} .cat_links.forum * {
+    font-family: 'Open sans', sans-serif;
+    text-decoration: none;
+    font-size: 1.6rem;
+    
+} .cat_links:hover {
+    background-color: #7292ad;
+    font-style: normal;
+    color: white;
+}
+
+input[type='submit'].forum {
+    margin: 0;    
+} input[type='submit'].forum#add_reply {
+    margin-bottom: 1rem;
+}
+
+td {
+    padding: 1.2rem;
+    border: 0px;
+}
+
+hr.forum {
+    margin-top: 0.6rem;
+    margin-bottom: 0.6rem;
+    color: #9a9a9a;
+}
+
+
+
+

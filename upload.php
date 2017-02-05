@@ -61,16 +61,22 @@ if ($uploadOk == 0) {
 } else {
     // if everything is ok, try to upload file
     if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file_ext)) {
-        $stmt = $db->prepare("
-        INSERT INTO imagePaths (id, name, ext) VALUES (:path, :medicine, :ext) 
-        ON DUPLICATE KEY UPDATE ext = :ext;
-        ");
+        try {
+            $stmt = $db->prepare("
+            INSERT INTO imagePaths (id, name, ext) VALUES (:path, :medicine, :ext) 
+            ON DUPLICATE KEY UPDATE ext = :ext;
+            ");
+
+            $stmt->execute(
+                array(":medicine" => $medicine, ":path" => $target_file, ":ext" => $ext)
+            );
         
-        $stmt->execute(
-            array(":medicine" => $medicine, ":path" => $target_file, ":ext" => $ext)
-        );
-        
-        error_log("The file " . basename($_FILES["fileToUpload"]["name"]) . " has been uploaded.");
+            error_log("The file " . basename($_FILES["fileToUpload"]["name"]) . " has been uploaded.");
+            
+        } catch (PDOException $Exception) {
+            error_log($Exception);
+        }
+            
     } else {
         error_log("Sorry, there was an error uploading your file.");
     }
