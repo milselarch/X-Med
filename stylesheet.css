@@ -139,9 +139,11 @@ table.table {
     width: 22%;
 } table.table tbody > tr td:nth-child(2), table.table thead th:nth-child(2) {
     width: 78%
+        
 } table.table tbody tr td {
     word-wrap: break-word;
-    
+    border-bottom: 1px solid #ddd;
+
 } table.table tbody tr:hover {
     background-color: #8da9f4;
     color: white;

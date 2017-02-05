@@ -27,12 +27,13 @@ function addRowToTable(action, name, instructions) {
             "<iframe id='picture' scrolling='no'/>",
             {'class': "images"}
         );
+        pictureElement.attr(
+            'src', 'picture.php?' + $.param({'medicineName': name})
+        );
         
-        pictureElement.attr('src', 'picture.php?' + $.param({'medicineName': name}));
         newElement.children('td').eq(0).append(pictureElement);
-        newElement.on('load', function () {
-            console.log("CHEIGHT", pictureElement.contents().height());
-            pictureElement.height(pictureElement.contents().height());
+        pictureElement.ready(function () {
+            pictureElement.height(pictureElement.width());
         });
 
     } else if (action === "update") {

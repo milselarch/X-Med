@@ -22,37 +22,38 @@ if ($stmt->rowCount() == 0) {
     $path = 'http://downloadicons.net/sites/default/files/question-icon-80125.png';
     //'https://i.ytimg.com/vi/S40r0jGT1cQ/maxresdefault.jpg';
 } else {
-    $path = $result[0]['id'] . "." . $result[0]['ext'];
+    $path = $result[0]['id'] . "." . $result[0]['ext'] . "?timestamp=" . time();
 }
 ?>
    
 <html>
     <head>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-        <link href="https://fonts.googleapis.com/css?family=Dosis" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css?family=Roboto+Slab" rel="stylesheet">
-
-        <link rel="stylesheet" type="text/css" href="picture.css">
         
         <script>
             $(document).ready(function () {
-                console.log("IWIDTH", $(this).width());
+                //images/1aece81dd38b101f465d725a6d292e22c71a0f3c.png
+                console.log("IMG HEIGHT", $(this).width());
                 $('img#mainImage').height($(this).width());
                 
                 $('img#mainImage').click(function () {
-                    console.log("CLICKED IMGE");
+                    //console.log("CLICKED IMGE");
                     $("input[name='fileToUpload']").trigger('click');
                     //$('#mainForm').submit();
                 });
                 
                 $('input:file').change(function(e) {
-                    console.log('file selected.');
+                    console.log('file selected.', $(this).val());
                     $('input:submit').trigger('click');
                 });
             });
-        
         </script>
+        
+        <link href="https://fonts.googleapis.com/css?family=Dosis" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Roboto+Slab" rel="stylesheet">
+
+        <link rel="stylesheet" type="text/css" href="picture.css">
     </head>
     
     <body>
