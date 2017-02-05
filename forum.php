@@ -1,4 +1,7 @@
-<?php session_start();?>
+<?php
+require "session.php";
+?>
+
 <!DOCTYPE html>
 <!--
 To change this license header, choose License Headers in Project Properties.
@@ -11,29 +14,23 @@ and open the template in the editor.
         <title>Untitled Document</title>
         <link rel="stylesheet" type="text/css" href="style.css"/>
     </head>
-    
     <body>
         <div id='wrapper'>
             <h2>Log in to Forum</h2>
-            <p>Creating login functionality</P>
+            <p>Creating login functionality</p>
             <?php
-            if(!isset($_SESSION['uid'])){
-                echo "<form action='login_parse.php' method='post'>
-                    Username: <input type='text' name='username'/>&nbsp;
-                    Password: <input type='password' name ='password' />&nbsp;
-                    <input type='submit' name='submit' value='Log in' /> ";
-            }else{
-                echo "<p>You are logged in as ".$_SESSION['username']."&bull; <a href='logout_parse.php'>Logout</a>";
-            }
+            echo "<p>You are logged in as " . $_SESSION['login_user'] . "&bull; <a href='logout.php'>Logout</a>";
             ?>
         <hr/>
         <div id="content">
             <?php
             include_once("connect.php");
+            
             $sql = "SELECT * FROM categories ORDER BY category_title ASC";
-            $res = mysqli_query($con,$sql) or die(mysqli_error());
-            $categories="";
-            if (mysqli_num_rows($res) > 0){
+            $res = mysqli_query($con, $sql) or die(mysqli_error());
+            
+            $categories = "";
+            if (mysqli_num_rows($res) > 0) {
                 while ($row = mysqli_fetch_assoc($res)){
                     $id = $row['id'];
                     $title = $row['category_title'];

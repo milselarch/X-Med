@@ -27,7 +27,7 @@
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
-                        <li id="nav_medicine"><a href="#">medicine</a></li>
+                        <li id="nav_medicine"><a href="forum.php">forum</a></li>
                         <!-- <li id="nav_account"><a href="#">account</a></li> -->
                         <!--
                         <li class="dropdown">

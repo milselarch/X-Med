@@ -16,8 +16,6 @@ and open the template in the editor.
 
 
 
-
-
 <div class="navbar navbar-inverse navbar-static-top">
  
  <div class="container">

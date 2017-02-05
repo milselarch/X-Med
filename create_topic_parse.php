@@ -1,19 +1,17 @@
 <?php
-session_start();
-if($_SESSION['uid'] == ""){
-    header("Location:index.php");
-    exit();
-}
-if(isset($_POST['topic_submit'])){
-    if(($_POST['topic_title'] == "") && ($_POST['topic_cotent'] == "")){
+require 'session.php';
+
+if (isset($_POST['topic_submit'])) {
+    if (($_POST['topic_title'] == "") && ($_POST['topic_cotent'] == "")) {
         echo "You did not fill in both fields. Please return to the previous page.";
         exit();
-    }else{
+        
+    } else {
         include_once("connect.php");
         $cid = $_POST['cid'];
         $title = $_POST['topic_title'];
         $content = $_POST['topic_content'];
-        $creator = $_SESSION['uid'];
+        $creator = $_SESSION['login_user'];
         
         $sql = "INSERT INTO topics (category_id, topic_title, topic_creator, topic_date, topic_reply_date) VALUES "
                 . "('".$cid."', '".$title."', '".$creator."', now(), now())";
@@ -26,9 +24,9 @@ if(isset($_POST['topic_submit'])){
         $sql3 = "UPDATE categories SET last_post_date=now(), last_user_posted='".$creator."' WHERE id='".$cid."' LIMIT 1";
         $res3 = mysqli_query($con,$sql3) or die(mysqli_error($con));
         
-        if (($res) && ($res2) && ($res3)){
+        if (($res) && ($res2) && ($res3)) {
             header("Location: view_topic.php?cid=".$cid."&tid=".$new_topic_id);
-        }else{
+        } else {
             echo "There was a problem creating your topic. Please try again. ";
         }
     }
