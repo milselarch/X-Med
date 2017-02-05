@@ -127,7 +127,7 @@ $(document).ready(function () {
         
         medicineName = $(this).attr('name');
         medicineData = $(this).children('td').eq(1).text();
-        medicineName = medicineName.substr(medicineName.indexOf('_') + 1);
+        medicineName = extractName(medicineName);
         $('table#medicineTable *').removeClass('clicked');
         $(this).addClass('clicked');
         

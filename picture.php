@@ -38,7 +38,7 @@ if ($stmt->rowCount() == 0) {
                 $('img#mainImage').height($(this).width());
                 
                 <?php 
-                if ($userType == 'admin') {
+                if ($userType == 'admin' or $userType == 'staff') {
                     echo ("
                     $('img#mainImage').click(function () {
                         //console.log('CLICKED IMGE');

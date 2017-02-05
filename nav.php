@@ -1,4 +1,8 @@
-<?php include "session.php" ?>
+<?php 
+require "session.php";
+$userType = $_SESSION["user_type"];
+
+?>
 
 <html>
     <head>
@@ -72,8 +76,14 @@
                             <?php echo $_SESSION['login_user'] ?> <span class="caret"></span></a>
 
                             <ul class="dropdown-menu">
+                                <?php 
+                                    if ($userType == 'admin') {
+                                        echo "<li><a href='users.php'>view users</a></li>";
+                                    }
+                                ?>
+                                <li><a href="feedback.php">feedback</a></li>               
                                 <li><a href="logout.php">log out</a></li>
-                                <li><a href="feedback.php">feedback</a></li>
+                
                                 <!--
                                 <li><a href="#">Something else here</a></li>
                                 <li role="separator" class="divider"></li>
