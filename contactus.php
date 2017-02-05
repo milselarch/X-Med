@@ -142,9 +142,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
     
     $servername = "localhost";
-        $username = "root";
-        $password = "";
-        $dbname = "logintest";
+        $username = "webuser";
+        $password = "password";
+        $dbname = "X_Med";
       
         
          

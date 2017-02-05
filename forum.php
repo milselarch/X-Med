@@ -44,7 +44,7 @@ and open the template in the editor.
                             $categories .= "<a href='view_category.php?cid=".$id."' class='cat_links forum'>".$title." - <font size='-1'>".$description."</font></a>";
                         }
                         echo $categories;
-                    }else{
+                    } else{
                         echo "<P>There are no categories availiable yet.</P>";
                     }
                     ?>

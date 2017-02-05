@@ -5,6 +5,7 @@ session_start();
 
 <html lang="en">
   <head>
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
       <style>
           
           .me-right{
@@ -147,6 +148,9 @@ session_start();
        echo "<div style='text-align: right; color:blue;'>".$success."</div>"
   ?>
     <div class="container">
+     
+    <?php require 'gallery.php' ?>
+        
 
       <div class="row row-offcanvas row-offcanvas-right">
 
@@ -169,15 +173,20 @@ session_start();
             $db = new PDO("mysql:host=localhost;dbname=X_Med", "webuser", "password");
             $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); // <== add this line
 
-            $stmt = $db->prepare("select name, instructions from medicine order by timestamp limit 6");
+            $stmt = $db->prepare("select name, instructions from medicine order by timestamp DESC limit 6");
             $stmt->execute();
       
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 $name = $row["name"];
                 $instructions = $row["instructions"];
-
+                
+                if (strlen($instructions) > 100) {
+                    $instructions = substr($instructions, 0, 140) . "...";
+                }
+                
+                
                 echo "<div class='col-xs-6 col-lg-4'";
-                echo "<h2>$name</h2>";
+                echo "<h2><b>$name</b></h2>";
                 echo "<p>$instructions</p>";
                 echo "</div><!--/.col-xs-6.col-lg-4-->";
             }
@@ -189,7 +198,6 @@ session_start();
         <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar">
           <div class="list-group">
               <a href="#" class="list-group-item active">Navigation</a>
-            <a href="#" class="list-group-item">FORUM</a>
             <a href="newpage.php" class="list-group-item">NEWS</a>
           </div>
         </div><!--/.sidebar-offcanvas-->
@@ -198,7 +206,8 @@ session_start();
       <hr>
 
       <footer>
-        <p style='color: grey;'>&copy; Made by Charles, Charlotte and KK</p>
+        <p style='color: grey;'>&copy; Made by Charles, Charlotte and KK. Give us all the CSAD marks pls</p>
+        <br/>
       </footer>
 
     </div><!--/.container-->
@@ -213,6 +222,7 @@ session_start();
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="assets/js/ie10-viewport-bug-workaround.js"></script>
     <script src="offcanvas.js"></script>
+    
   </body>
 </html>
 

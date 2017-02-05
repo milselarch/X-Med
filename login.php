@@ -9,18 +9,21 @@ if (isset($_POST['submit'])) {
     } else {
         // Define $username and $password
         $username = $_POST['username'];
+        $password = $_POST['password'];
         
         $db = new PDO("mysql:host=localhost;dbname=X_Med", "webuser", "password");
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); // <== add this line
 
         /* these three lines get number of medicine entries with name $name */
-        $stmt = $db->prepare("select count(*) from users where Username = ?");
-        $stmt->execute(array($username));
+        $stmt = $db->prepare("select count(*) from users where Username = ? and Password = ?");
+        $stmt->execute(array($username, $password));
         $rows = (int) $stmt->fetchColumn();
 
         if ($rows == 1) {
-            $stmt = $db->prepare("select ID, userType from users where Username = ? limit 1");
-            $stmt->execute(array($username));
+            $stmt = $db->prepare(
+                "select ID, userType from users where Username = ? and Password = ? limit 1"
+            );
+            $stmt->execute(array($username, $password));
             
             $result = $stmt->fetch(PDO::FETCH_ASSOC);
             $userType = $result["userType"];
