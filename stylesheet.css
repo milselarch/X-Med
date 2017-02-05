@@ -6,7 +6,7 @@
 }
 
 html {
-    overflow-y: none;
+    overflow-y: scroll;
 }
 
 body {
@@ -73,6 +73,7 @@ div.centered {
 } div #fieldData {
     padding-left: 7%; 
     width: 93%;
+    
 } div #formDiv {
     width: 40%;
     margin-right: 10%;
@@ -136,9 +137,9 @@ table.table {
     margin-bottom: 0px;
     float: right;    
 } table.table tbody > tr td:nth-child(1), table.table thead th:nth-child(1) {
-    width: 22%;
+    width: 6em;
 } table.table tbody > tr td:nth-child(2), table.table thead th:nth-child(2) {
-    width: 78%
+    width: calc(100% - 6em);
         
 } table.table tbody tr td {
     word-wrap: break-word;

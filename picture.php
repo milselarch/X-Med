@@ -1,5 +1,6 @@
 <?php
 require "session.php";
+$userType = $_SESSION["user_type"];
 
 if (isset($_GET["medicineName"])) {
     $medicine = $_GET["medicineName"];
@@ -36,16 +37,21 @@ if ($stmt->rowCount() == 0) {
                 console.log("IMG HEIGHT", $(this).width());
                 $('img#mainImage').height($(this).width());
                 
-                $('img#mainImage').click(function () {
-                    //console.log("CLICKED IMGE");
-                    $("input[name='fileToUpload']").trigger('click');
-                    //$('#mainForm').submit();
-                });
-                
-                $('input:file').change(function(e) {
-                    console.log('file selected.', $(this).val());
-                    $('input:submit').trigger('click');
-                });
+                <?php 
+                if ($userType == 'admin') {
+                    echo ("
+                    $('img#mainImage').click(function () {
+                        //console.log('CLICKED IMGE');
+                        $('input[name=fileToUpload]').trigger('click');
+                        //$('#mainForm').submit();
+                    });
+
+                    $('input:file').change(function(e) {
+                        console.log('file selected.', $(this).val());
+                        $('input:submit').trigger('click');
+                    });");
+                }
+                ?>
             });
         </script>
         

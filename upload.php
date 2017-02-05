@@ -1,5 +1,6 @@
 <?php
 require 'session.php';
+if ($userType == 'user') { exit(); }
 
 $medicine = $_POST["medicineName"];
 $_SESSION["medicineName"] = $medicine;
