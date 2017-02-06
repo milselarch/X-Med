@@ -6,6 +6,7 @@ require 'session.php';
 	<head>
 	    <meta charset="UTF-8">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+        <script src="validate.js"></script>
         <script src="script_user.js"></script>
 
         <link href="https://fonts.googleapis.com/css?family=Dosis" rel="stylesheet">

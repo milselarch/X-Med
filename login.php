@@ -1,6 +1,10 @@
 <?php
 session_start(); // Starting Session
 
+if (isset($_POST['register'])) {
+    header('location: register.php');
+}
+
 if (isset($_POST['submit'])) {
     if (!isset($_POST['username'])) {
         error_log("NO USERNAME");

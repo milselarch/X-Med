@@ -26,6 +26,8 @@ if (isset($_POST['star'])) {
         $stars = (int) $stmt->fetchColumn();
     } 
 }
+
+
 ?>
 
 <html>
@@ -78,6 +80,13 @@ if (isset($_POST['star'])) {
                     
                     //console.log("STARS1", <?php echo $stars ?>);
                 </script>
+                
+                <?php
+                    $stmt = $db->prepare("SELECT AVG(rating) FROM ratings");
+                    $stmt->execute(array($username));
+                    $stars = $stmt->fetchColumn();
+                    echo "<br/><br/><br/><p> average rating: $stars stars</p>"; 
+                ?>
                 
                 <input type="submit" name="submit"/>
             </form>

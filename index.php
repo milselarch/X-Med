@@ -5,9 +5,7 @@ session_start();
 
 <html lang="en">
   <head>
-     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-      <style>
-          
+      <style>        
           .me-right{
               float: right !important;
              margin-right: 20px;
@@ -24,11 +22,13 @@ session_start();
 
     <title>Off Canvas Template for Bootstrap</title>
 
-    <!-- Bootstrap core CSS -->
-    <link href="dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Dosis" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab" rel="stylesheet">
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <link href="assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+    <link href="stylesheet.css" rel="stylesheet">
 
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
@@ -42,116 +42,18 @@ session_start();
   </head>
 
   <body>
-    <nav class="navbar navbar-default" >
-      <div class="container" style='color: red;'>
-        <div class="navbar-header" >
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">X-MED</a>
-        </div>
-          <div id="navbar" class="collapse navbar-collapse" style="color: royalblue;">
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Home</a></li>
-            <li><a href="aboutus.php">About</a></li>
-            <li><a href="contactus.php">Contact</a></li>
-            
-          </ul>
-              
-                 
-            <form class="navbar-form me-right" method="POST" action="login.php">
-                <div class="form-group"> 
-                    <input type="text" name="username" placeholder="username"  class="form-control ">
-                </div>
-                
-                <div class="form-group">
-                    <input type="password" name="password" placeholder="password" class="form-control" required>
-                </div>
-                
-                <button type="submit" name="submit">Login</button>
-            </form>
-               
-               
-               
-               
-               
-              <?php
-               if ($_SERVER["REQUEST_METHOD"] == "POST"&& isset( $_POST['submit'] )){
-        $user=$_POST['username'];
-        $pword=$_POST['password'];
-       // echo $user;
-        //echo "<br>".$password;
-        $badlogin="";
-        echo $badlogin;
-        
-        $servername = "localhost";
-        $username = "webuser";
-        $password = "password";
-        $dbname = "X_Med";
-       // $user=$_POST['username'];
-         //$pword=$_POST['password'];
-        // $checkpword=$_POST['confirmpass'];
-        //$user=$_SESSION["Username"];
-      //  $pword=$_SESSION["password"];
-         
-        
-         
-         //=======================================================
-        // Check connection
-        $conn = new mysqli($servername, $username, $password, $dbname);
-        if ($conn->connect_error) {
-            die("Connection failed: " . $conn->connect_error);
-        }
-       
-        
-        //====================================================================
-        $sql = "SELECT Username,Password FROM users";
-        $result = $conn->query($sql);
-
-        if ($result->num_rows > 0) {
-     
-        while($row = $result->fetch_assoc()) {
-        if(($row["Username"]==$user)&&($row["Password"]!=$pword)){
-            $badlogin="* Wrong password!";
-            break;
-            
-        }    
-        else if(($row["Username"]==$user)&&($row["Password"]==$pword)){
-            $success= "Login Successful!";
-            $badlogin="";
-            break;
-        }
-        else{
-        $badlogin="No user account is found.";}
-       }
-        }
-        
-        $conn->close();
-        
-        
-        
-              }
-        ?>
-        
-              
-              <form style="position: absolute; right: 0; margin-top: 11px; margin-right: 4px;" method="POST" action="register.php">
-                 <button type="submit">Register</button> 
-                 
-              </form>
-        </div><!-- /.nav-collapse -->
-      </div><!-- /.container -->
-    </nav><!-- /.navbar -->
+        <div class='centered'>
+            <?php 
+        require 'nav.php';  
+    ?>
+    
+    
   <?PHP echo "<div style='text-align: right; color:red;'>".$badlogin."</div>";
        echo "<div style='text-align: right; color:blue;'>".$success."</div>"
   ?>
     <div class="container">
      
     <?php require 'gallery.php' ?>
-        
-
       <div class="row row-offcanvas row-offcanvas-right">
 
         <div class="col-xs-12 col-sm-9">
@@ -161,7 +63,7 @@ session_start();
           <div class="jumbotron" >
             <iframe src="//cdn.bannersnack.com/banners/bxcj29pnb/embed/index.html?userId=27254551&t=1486138227" width="468" height="60" scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen="true"></iframe>
            
-            <h1>Welcome to X-MED</h1>
+            <h1 style="font-family: 'Roboto slab'">Welcome to X-MED</h1>
             <p style="color: grey; font-weight: bold ">Share . Discover . Discuss</p>
           </div>
           
@@ -182,12 +84,13 @@ session_start();
                 
                 if (strlen($instructions) > 100) {
                     $instructions = substr($instructions, 0, 140) . "...";
+                } else {
+                    $instructions = str_pad($instructions, 100-strlen($instructions), " ");
                 }
                 
-                
                 echo "<div class='col-xs-6 col-lg-4'";
-                echo "<h2><b>$name</b></h2>";
-                echo "<p>$instructions</p>";
+                echo "<h2><b style='font-size: 2rem'>$name</b></h2>";
+                echo "<p style='font-size: 1.5rem; font-family: open sans'>$instructions</p>";
                 echo "</div><!--/.col-xs-6.col-lg-4-->";
             }
             ?>
@@ -212,17 +115,12 @@ session_start();
 
     </div><!--/.container-->
 
-
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
-    <script src="dist/js/bootstrap.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="assets/js/ie10-viewport-bug-workaround.js"></script>
     <script src="offcanvas.js"></script>
     
+            
+        </div>
   </body>
 </html>
 

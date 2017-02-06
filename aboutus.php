@@ -19,24 +19,9 @@ Based on tutorial from: http://www.coders-guide.com/watch.php?v=53
 <!-- Custom styles for this template -->
 <link href="jumbotron.css" rel="stylesheet">
 
-<div class="navbar navbar-default">
- 
- <div class="container">
- 
-     <a href="main.php" class="navbar-brand">X-MED </a> <button class="navbar-toggle"
-      data-toggle="collapse" data-target=".navHeaderCollapse"></button>
-
-      <div class="collapse navbar-collapse navHeaderCollapse">
-        <ul class="nav navbar-nav navbar-left">
-            <li><a href="main.php">Home</a></li>
-
-              <li class="active"><a href="#">About</a></li>
-
-              <li><a href="contactus.php">Contact</a></li>
-        </ul>
-      </div>
-    </div>
-  </div>
+<?php 
+    require 'nav.php';
+?>
 
 
  <div class="container">  

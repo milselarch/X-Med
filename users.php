@@ -20,6 +20,15 @@ if (isset($_POST['submit'])) {
     $stmt->execute(array(":userType" => $newType, ":username" => $user));
 }
 
+if (isset($_POST["remove"])) {
+    $user = $_POST["username"];
+    $stmt = $db->prepare("delete from ratings where Username = :username");
+    $stmt->execute(array(":username" => $user));
+    
+    $stmt = $db->prepare("delete from users where Username = :username");
+    $stmt->execute(array(":username" => $user));
+}
+
 ?>
 
 <html>
@@ -66,6 +75,14 @@ if (isset($_POST['submit'])) {
                 font-size: 1.8rem;
             } input[name='username'] {
                 display: none;
+            }
+            
+            form {
+                display: inherit;
+            } form.remove input[type='submit'] {
+                background-color: white;
+                color: red;
+                font-weight: 700;
             }
             
         </style>
@@ -117,12 +134,21 @@ if (isset($_POST['submit'])) {
                                         $type = $row["userType"];
                                         
                                         echo "<tr name='$username'>";
-                                        echo ("<td><form action='' method=POST>"
-                                            . "<input type='submit' name='submit' value='$type'/>"
+                                        echo "<td>";
+                                        
+                                        echo ("<form action='' method=POST class='remove'>"
+                                            . "<input type='submit' name='remove' value='X'/>"
                                             . "<input type='text' name='username' value='$username'/>"
-                                            . "</form></td>"
+                                            . "</form>"
                                             );
                                         
+                                        echo ("<form action='' method=POST>"
+                                            . "<input type='submit' name='submit' value='$type'/>"
+                                            . "<input type='text' name='username' value='$username'/>"
+                                            . "</form>"
+                                            );
+                                        echo "</td>";
+                                
                                         echo "<td>" . $row["name"] . "</td>";
                                         echo "<td>" . $username . "</td>";
                                         //echo "<td>" . $row["ID"] . "</td>";

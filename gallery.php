@@ -24,6 +24,7 @@
         color: white;
         border: 0 none;
         border-width: 0;
+        padding: 1rem;
         
     } div#gWidget button.gallery:hover {
         background: #4a8bec;
@@ -48,8 +49,8 @@ $(document).ready(function () {
 
     function scroll () {
         var offsetNow = $('div#galleryWrapper').scrollLeft();
-        $('div#galleryWrapper').scrollLeft(offsetNow + offset*10);
-        setTimeout(scroll, 10);
+        $('div#galleryWrapper').scrollLeft(offsetNow + offset*3);
+        setTimeout(scroll, 2);
     }
     
     scroll();

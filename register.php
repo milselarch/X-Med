@@ -41,7 +41,8 @@ and open the template in the editor.
 
     <!-- Bootstrap core CSS -->
     <link href="dist/css/bootstrap.min.css" rel="stylesheet">
-
+    <link href="stylesheet.css" rel="stylesheet">
+    
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <link href="assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
 
@@ -51,24 +52,6 @@ and open the template in the editor.
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
     <script src="assets/js/ie-emulation-modes-warning.js"></script>
-    <div class="navbar navbar-inverse navbar-static-top">
- 
- <div class="container">
- 
-     <a href="main.php" class="navbar-brand">X-MED </a> <button class="navbar-toggle"
-      data-toggle="collapse" data-target=".navHeaderCollapse"></button>
-
-      <div class="collapse navbar-collapse navHeaderCollapse">
-        <ul class="nav navbar-nav navbar-left">
-            <li><a href="main.php">Home</a></li>
-
-            <li><a href="aboutus.php">About</a></li>
-
-              <li><a href="contactus.php">Contact</a></li>
-        </ul>
-      </div>
-    </div>
-  </div>
 
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -78,9 +61,10 @@ and open the template in the editor.
     <![endif]-->
   </head>
 
-  <body>
-      
-      
+  <body style='padding: 0px'>
+    <div class='centered'>
+       <?php include 'nav.php'; ?>
+        
       <?php
       
      $pass=$user=$warning=$email=$name=$mail="";
@@ -249,5 +233,6 @@ and open the template in the editor.
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="assets/js/ie10-viewport-bug-workaround.js"></script>
+    </div>
   </body>
 </html>

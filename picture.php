@@ -32,10 +32,28 @@ if ($stmt->rowCount() == 0) {
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
         
         <script>
+            DEBUG_ID = Math.floor(Math.random()*10000);
+            
             $(document).ready(function () {
                 //images/1aece81dd38b101f465d725a6d292e22c71a0f3c.png
-                console.log("IMG HEIGHT", $(this).width());
-                $('img#mainImage').height($(this).width());
+                var image = $('img#mainImage');
+                image.height(image.width());
+            
+                function resize() {
+                    var width, height;
+                    width = image.width();
+                    height = image.height();
+
+                    //console.log(DEBUG_ID, width, height);
+                    if (width == 0) {
+                        setTimeout(resize, 50);
+                    } else if (width != height) {
+                        image.height(width);
+                        setTimeout(resize, 50);
+                    }
+                }
+                
+                resize();
                 
                 <?php 
                 if ($userType == 'admin' or $userType == 'staff') {

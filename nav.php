@@ -1,5 +1,5 @@
 <?php 
-require "session.php";
+session_start();
 $userType = $_SESSION["user_type"];
 
 ?>
@@ -25,35 +25,37 @@ $userType = $_SESSION["user_type"];
                         <span class="icon-bar"></span>
                     </button>
 
-                    <a class="navbar-brand" href="medicine.php">X-Med</a>
+                    <a class="navbar-brand" href="index.php"><img src="logo.png" alt="" style='height:22px'></a>
                 </div>
 
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    
+                    
+                    <?php
+                        if (isset($_SESSION["login_user"])) {
+                            echo "<ul class='nav navbar-nav'>
+                            <li id='nav_medicine'><a href='medicine.php'>Medicines</a></li>
+                            </ul>";
+                            echo "<ul class='nav navbar-nav'>
+                            <li id='nav_medicine'><a href='forum.php'>Forum</a></li>
+                            </ul>";
+                        }
+                    ?>
+                    
                     <ul class="nav navbar-nav">
-                        <li id="nav_medicine"><a href="forum.php">forum</a></li>
-                        <!-- <li id="nav_account"><a href="#">account</a></li> -->
-                        <!--
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-
-                            <ul class="dropdown-menu">
-                                <li><a href="#">Action</a></li>
-                                <li><a href="#">Another action</a></li>
-                                <li><a href="#">Something else here</a></li>
-                                <li role="separator" class="divider"></li>
-                                <li><a href="#">Separated link</a></li>
-                                <li role="separator" class="divider"></li>
-                                <li><a href="#">One more separated link</a></li>
-                            </ul>
-                        </li>
-                        -->
+                        <li id="nav_medicine"><a href="aboutus.php">About Us</a></li>
+                    </ul>
+                    
+                    <ul class="nav navbar-nav">
+                        <li id="nav_medicine"><a href="contactus.php">Contact Us</a></li>
                     </ul>
 
+                    <!--
                     <form class="navbar-form navbar-left" action="externalSearch.php">
                         <button type="submit" class="btn btn-default">External Search</button>
                     </form>
-                    
+                    -->
                     
 
                     <ul class="nav navbar-nav navbar-right" action="options.php">
@@ -65,31 +67,116 @@ $userType = $_SESSION["user_type"];
                         </li>
                         -->
                         
-                        <li>
-                            <a class="nav navbar-nav">
-                                <?php echo $_SESSION['user_type'] ?>
-                            </a>
-                        </li>
 
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                            <?php echo $_SESSION['login_user'] ?> <span class="caret"></span></a>
-
-                            <ul class="dropdown-menu">
                                 <?php 
-                                    if ($userType == 'admin') {
-                                        echo "<li><a href='users.php'>view users</a></li>";
+                                    if (isset($_SESSION['login_user'])) {
+                                        echo "<a href='#' class='dropdown-toggle' data-toggle='dropdown' role='button' aria-haspopup='true' aria-expanded='false'>";
+                                        echo $_SESSION['login_user'];
+                                        echo "&nbsp<span class='caret'></span></a>";
+                                    };
+                                    
+                                ?> 
+
+                                <?php 
+                                    if (isset($_SESSION['login_user'])) {
+                                        echo "<ul class='dropdown-menu'>";
+                                        echo "<li><a href='feedback.php'>feedback</a></li>";
+                                        if ($userType == 'admin') {
+                                            echo "<li><a href='users.php'>view users</a></li>";
+                                        }
+
+                                        echo "<li><a href='logout.php'>log out</a></li>";
                                     }
+                                
+                                    if (!isset($_SESSION['login_user'])) {
+                                        echo "</ul>";
+                                        
+                                        if ($_SERVER['REQUEST_URI'] == "/X-Med/index.php" || $_SERVER['REQUEST_URI'] == "/X-Med/") {
+                                            echo "
+                                            <form class='navbar-form me-right' method='POST' action='login.php'>
+                                                <div class='form-group'> 
+                                                    <input type='text' name='username' placeholder='username'  class='form-control'>
+                                                </div>
+
+                                                <div class='form-group'>
+                                                    <input type='password' name='password' placeholder='password' class='form-control' required>
+                                                </div>
+                                                
+                                                <style>
+                                                    button.login {
+                                                        padding-top: 0.4rem;
+                                                        padding-bottom: 0.4rem;
+                                                    }
+                                                </style>
+
+                                                <button class='login' name='submit' type='submit'>Login</button>
+                                                <button class='login' name='register' type='submit'>Register</button> 
+                                            </form>";
+                                        
+                                        }
+                                        
+                                    
+                                        
+                                        if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
+                                            $user = $_POST['username'];
+                                            $pword = $_POST['password'];
+                                           // echo $user;
+                                            //echo "<br>".$password;
+                                            $badlogin = "";
+                                            echo $badlogin;
+
+                                            $servername = "localhost";
+                                            $username = "webuser";
+                                            $password = "password";
+                                            $dbname = "X_Med";
+                                            // $user=$_POST['username'];
+                                            // $pword=$_POST['password'];
+                                            // $checkpword=$_POST['confirmpass'];
+                                            // $user=$_SESSION["Username"];
+                                            // $pword=$_SESSION["password"];
+
+
+
+                                             //=======================================================
+                                            // Check connection
+                                            $conn = new mysqli($servername, $username, $password, $dbname);
+                                            if ($conn->connect_error) {
+                                                die("Connection failed: " . $conn->connect_error);
+                                            }
+
+                                            //====================================================================
+                                            $sql = "SELECT Username,Password FROM users";
+                                            $result = $conn->query($sql);
+
+                                            if ($result->num_rows > 0) {
+                                                while ($row = $result->fetch_assoc()) {
+                                                    if (($row["Username"]==$user)&&($row["Password"]!=$pword)) {
+                                                        $badlogin="* Wrong password!";
+                                                        break;
+
+                                                    } else if(($row["Username"]==$user)&&($row["Password"]==$pword)){
+                                                        $success= "Login Successful!";
+                                                        $badlogin="";
+                                                        break;
+                                                    } else {
+                                                        $badlogin="No user account is found.";
+                                                    }
+                                                }
+                                            }
+
+                                        $conn->close();
+                                    }
+                                }
+                            
+                        
                                 ?>
-                                <li><a href="feedback.php">feedback</a></li>               
-                                <li><a href="logout.php">log out</a></li>
                 
                                 <!--
                                 <li><a href="#">Something else here</a></li>
                                 <li role="separator" class="divider"></li>
                                 <li><a href="#">Separated link</a></li>
                                 -->
-                            </ul>
                         </li>
                     </ul>
                     
