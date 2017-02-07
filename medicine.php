@@ -76,7 +76,9 @@ if ($userType == 'user') {
                 <div id="searchTable">
                     <div id="tableDiv">                    
                         <table class="table" id="medicineTable">
-                            <tbody></tbody>
+                            <tbody>
+                                <tr style='display:none' id="google_search_tr" name="google"><td><img src="google.png" style='width: 100%;' alt=""></td><td id="google_search_td"></td></tr>
+                            </tbody>
                         </table>
                     </div>
                 </div>

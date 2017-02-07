@@ -9,8 +9,6 @@ and open the template in the editor.
 $type="";
 $useremail=$userid= "";
 $customername="";
-
-
 ?>
 
 
@@ -25,10 +23,19 @@ $customername="";
 <link href="assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
 
 <!-- Custom styles for this template -->
+<link href="https://fonts.googleapis.com/css?family=Dosis" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Roboto+Slab" rel="stylesheet">
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" href="stylesheet.css">
 <link href="jumbotron.css" rel="stylesheet">
-<?php 
-    require 'nav.php';
-?>
+
+<body>
+    <div class='centered'>
+        <?php 
+            require 'nav.php';
+        ?>
 
 
 <div class="jumbotron jumbotron-sm">
@@ -179,24 +186,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
         //debugging purpose
         
-        $conne->close();
-    
-    
-    
-    
-    
-    
-    
-    
+        $conne->close();   
 }
-
-
-
-
-
-
-
-
-
-
 ?>
+    </div>
+</body>

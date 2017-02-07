@@ -26,8 +26,6 @@ if (isset($_POST['star'])) {
         $stars = (int) $stmt->fetchColumn();
     } 
 }
-
-
 ?>
 
 <html>

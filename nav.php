@@ -115,60 +115,7 @@ $userType = $_SESSION["user_type"];
                                             </form>";
                                         
                                         }
-                                        
-                                    
-                                        
-                                        if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
-                                            $user = $_POST['username'];
-                                            $pword = $_POST['password'];
-                                           // echo $user;
-                                            //echo "<br>".$password;
-                                            $badlogin = "";
-                                            echo $badlogin;
-
-                                            $servername = "localhost";
-                                            $username = "webuser";
-                                            $password = "password";
-                                            $dbname = "X_Med";
-                                            // $user=$_POST['username'];
-                                            // $pword=$_POST['password'];
-                                            // $checkpword=$_POST['confirmpass'];
-                                            // $user=$_SESSION["Username"];
-                                            // $pword=$_SESSION["password"];
-
-
-
-                                             //=======================================================
-                                            // Check connection
-                                            $conn = new mysqli($servername, $username, $password, $dbname);
-                                            if ($conn->connect_error) {
-                                                die("Connection failed: " . $conn->connect_error);
-                                            }
-
-                                            //====================================================================
-                                            $sql = "SELECT Username,Password FROM users";
-                                            $result = $conn->query($sql);
-
-                                            if ($result->num_rows > 0) {
-                                                while ($row = $result->fetch_assoc()) {
-                                                    if (($row["Username"]==$user)&&($row["Password"]!=$pword)) {
-                                                        $badlogin="* Wrong password!";
-                                                        break;
-
-                                                    } else if(($row["Username"]==$user)&&($row["Password"]==$pword)){
-                                                        $success= "Login Successful!";
-                                                        $badlogin="";
-                                                        break;
-                                                    } else {
-                                                        $badlogin="No user account is found.";
-                                                    }
-                                                }
-                                            }
-
-                                        $conn->close();
                                     }
-                                }
-                            
                         
                                 ?>
                 

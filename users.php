@@ -28,7 +28,6 @@ if (isset($_POST["remove"])) {
     $stmt = $db->prepare("delete from users where Username = :username");
     $stmt->execute(array(":username" => $user));
 }
-
 ?>
 
 <html>

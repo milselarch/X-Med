@@ -101,7 +101,20 @@ session_start();
         <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar">
           <div class="list-group">
               <a href="#" class="list-group-item active">Navigation</a>
-            <a href="newpage.php" class="list-group-item">NEWS</a>
+                <a href='newpage.php' class="list-group-item">NEWS</a>
+                
+                <?php
+                    $db = new PDO("mysql:host=localhost;dbname=X_Med", "webuser", "password");
+                    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); // <== add this line
+                    $stmt = $db->prepare("select annoucement from annoucement");
+                    $stmt->execute();
+                    
+                    if ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                        $ann = htmlspecialchars($row['annoucement']);
+                        echo "<p class='list-group-item' style='white-space: pre-wrap'><b>Annoucements:</b><br/>{$ann}</p>";
+                    }
+
+                ?>
           </div>
         </div><!--/.sidebar-offcanvas-->
       </div><!--/row-->
