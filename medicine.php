@@ -50,7 +50,7 @@ if ($userType == 'user') {
                         <textarea 
                             class="form" name="medicineName" 
                             cols="40" rows="1" maxlength="32"
-                        ></textarea>
+                        ><?= $_POST["medicineName"] ?></textarea>
 
                         <br/><br/>
                         <p>Instructions:</p>

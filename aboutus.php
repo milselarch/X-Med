@@ -36,16 +36,6 @@ Based on tutorial from: http://www.coders-guide.com/watch.php?v=53
         <div class="container">  
             <h2>ABOUT US</h2>
 
-            <div class="well well-sm">
-                <p>
-                    <span class="label label-warning">Note</span>
-                    
-                    <br>
-                    This is just a general introduction to X-MED .
-                    <br>
-                </p>
-            </div>
-
 
             <div class="row marketing">
                 <div class="col-lg-6">
@@ -55,11 +45,25 @@ Based on tutorial from: http://www.coders-guide.com/watch.php?v=53
                 </div>
 
                 <div class="col-lg-6">
+                    <?php
+                        $db = new PDO("mysql:host=localhost;dbname=X_Med", "webuser", "password");
+                        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); // <== add this line
+
+                        $stmt = $db->prepare("select info from buisness_info where type='what' limit 1");
+                        $stmt->execute();
+                        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+                        $about = $row["info"];
+
+                        $stmt = $db->prepare("select info from buisness_info where type='who' limit 1");
+                        $stmt->execute();
+                        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+                        $creator = $row["info"];
+                    ?>
                 
-                <h2>What is X-Med?</h2>
+                    <h2>What is X-Med?</h2>
+                    
                     <p>
-                    X-MED is a free to edit user database for medicine. Users can view and contribute to X-Med growing databases for educational purposes.
-                    We provide easy-to-read, in-depth, authoritative medical information for consumers via its robust, user-friendly, interactive website.
+                    <?= $about ?>
                     </p>
                     
                     <h3>
@@ -67,7 +71,7 @@ Based on tutorial from: http://www.coders-guide.com/watch.php?v=53
                     </h3>
                     
                     <p>
-                    X-Med is created by three students, Charles, KK and Charlotte.
+                    <?= $creator ?>
                     </p>
                 </div>
             </div>

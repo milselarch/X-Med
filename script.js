@@ -58,7 +58,7 @@ function extractName(medicineName) {
 
 $(document).ready(function () {
     'use strict';
-    var request, qrcode, width, nameElement, dataElement;
+    var request, qrcode, width, nameElement, dataElement, text;
     
     //jQuery('#qrcode').qrcode("this plugin is great");
     //new QRCode(document.getElementById("qrcode"), "http://jindo.dev.naver.com/collie");
@@ -79,6 +79,7 @@ $(document).ready(function () {
     dataElement = $("textarea[name='medicineData']");
     nameElement.on('change keydown paste input', function () {
         // whenever name field (nameElement) content changes, set QR code value arccordingly.
+        console.log("NCHAN");
         var name, isEmpty, googleElement;
         name = $.trim($(this).val());
         isEmpty = true;
@@ -113,6 +114,11 @@ $(document).ready(function () {
             $("tr[name='google']").css("display", "none");
         }
     });
+    
+    setTimeout(
+        function () {nameElement.trigger("input");},
+        0
+    );
     
     $('div#searchTable').height($('div#formDiv').height());
     

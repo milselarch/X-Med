@@ -1,3 +1,8 @@
+<?php
+session_start();
+?>
+   
+
 <style>
     div#gallery {
         background-color: white; 
@@ -30,6 +35,10 @@
         background: #4a8bec;
     }
     
+    form.galleryImage, img.guestImage {
+        cursor: pointer; 
+        cursor: hand;
+    }
 </style>
   
 <script>
@@ -54,6 +63,20 @@ $(document).ready(function () {
     }
     
     scroll();
+    
+    $('form.galleryImage').each(function () {
+        console.log($(this));
+        
+        $(this).click(function () {
+            $(this).submit();
+        });
+    });
+    
+    $('img.guestImage').each(function () {
+        $(this).click(function () {
+            window.alert("login to see medicine info!");
+        })
+    })
 })
 
 </script>
@@ -68,15 +91,30 @@ $(document).ready(function () {
             $db = new PDO("mysql:host=localhost;dbname=X_Med", "webuser", "password");
             $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); // <== add this line
 
-            $stmt = $db->prepare("select id, ext from imagePaths order by rand() limit 20");
+            $stmt = $db->prepare("select name, id, ext from imagePaths order by rand() limit 20");
             $stmt->execute();
 
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                $name = $row["name"];
                 $path = $row["id"];
                 $ext = $row["ext"];
                 $fullpath = "$path.$ext";
 
-                echo "<img width=100px height=100px src='$fullpath'/>";
+                if (isset($_SESSION["login_user"])) {
+                    if ($_SESSION["user_type"] == "user") {
+                        $direct = "medicine_user.php";
+                    } else {
+                        $direct = "medicine.php";
+                    }
+                    
+                    echo "<form method='POST' action=$direct class='galleryImage'>";
+                    echo "<input class='hidden' type='text' name='medicineName' value='$name'/>";
+                    echo "<input class='hidden' type='submit' name='gallery-submit' />";
+                    echo "<img width=100px height=100px src='$fullpath'/>";
+                    echo "</form>";
+                } else {
+                    echo "<img class='guestImage' width=100px height=100px src='$fullpath'/>";
+                }
             }
         ?>
         </div>

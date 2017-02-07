@@ -63,18 +63,44 @@ $(document).ready(function () {
     dataElement = $("textarea[name='medicineData']");
     nameElement.on('change keydown paste input', function () {
         // whenever name field (nameElement) content changes, set QR code value arccordingly.
-        var name = $.trim($(this).val());
+        var name, isEmpty, googleElement;
+        name = $.trim($(this).val());
+        isEmpty = true;
+        //console.log(name);
         //console.log(name);
         
         $('table#medicineTable').find('tr').each(function () {
             var rowName = extractName($(this).attr('name'));
-            if (rowName.indexOf(name) !== -1) {
-                $(this).css('display', 'block');
+            //console.log(rowName);
+            
+            if (rowName == 'google') {
+            } else if (rowName.indexOf(name) !== -1) {
+                $(this).css('display', 'table-row');
+                isEmpty = false;
             } else {
                 $(this).css('display', 'none');
             }
         });
+        
+        if (isEmpty == true) {
+            $("tr[name='google']").css("display", "table-row");
+            googleElement = $("tr[name='google'] td:nth-child(2)");
+            googleElement.empty();
+            
+            googleElement.append("Internal search has no results. Google search ");
+            googleElement.append($('<b/>', {"id": "google_query"}).text(name));
+            googleElement.append(' instead?');
+            //console.log("EMPTY");
+            
+        } else {
+            $("tr[name='google']").css("display", "none");
+        }
     });
+    
+    setTimeout(
+        function () {nameElement.trigger("input");},
+        0
+    );
     
     //$('div#searchTable').height($('body').height());
     
@@ -104,19 +130,24 @@ $(document).ready(function () {
     
     
     $('table#medicineTable').on('click', 'tr', function () {
-        if ($(this).hasClass('clicked')) { return; }
         console.log($(this).attr('name'));
-        var medicineName, medicineData, pictureElement;
+        var medicineName, medicineData, pictureElement, query;
+        
+        if ($(this).hasClass('clicked')) { return; }
+        if ($(this).attr('id') === 'google_search_tr') {
+            query = $("b#google_query").text();
+            window.location.replace("externalSearch.php?q=" + query);
+            return;
+        }
         
         medicineName = $(this).attr('name');
         medicineData = $(this).children('td').eq(1).text();
-        medicineName = medicineName.substr(medicineName.indexOf('_') + 1);
+        medicineName = extractName(medicineName);
         $('table#medicineTable *').removeClass('clicked');
         $(this).addClass('clicked');
         
-        //qrcode.makeCode(medicineName);
         $("textarea[name='medicineName']").val(medicineName);
-        //$("textarea[name='medicineData']").val(medicineData);
+        $("textarea[name='medicineData']").val(medicineData);
     });
 
     // Bind to the submit event of our form

@@ -98,18 +98,28 @@ $customername="";
         </div>
         <div class="col-md-4">
             <form>
+               <?php
+                    $db = new PDO("mysql:host=localhost;dbname=X_Med", "webuser", "password");
+                    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); // <== add this line
+
+                    $stmt = $db->prepare("select info from buisness_info where type='office' limit 1");
+                    $stmt->execute();
+                    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+                    $office = $row["info"];
+                        
+                    $stmt = $db->prepare("select info from buisness_info where type='email' limit 1");
+                    $stmt->execute();
+                    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+                    $email = $row["info"];
+                ?>
+                
                 <legend><span class="glyphicon glyphicon-globe"></span> Our office</legend>
-                <address>
-                    <strong>X-MED</strong><br>
-                    795 Folsom Ave, Suite 600<br>
-                    San Francisco, CA 94107<br>
-                    <abbr title="Phone">
-                        P:</abbr>
-                    (+65) 9709 3827
+                <address style='white-space: pre-line'>
+                   <?= $office ?>
                 </address>
                 <address>
                     <strong>Email:</strong><br>
-                    <a href="mailto:charlotte.limwt@gmail.com">support.xmed@gmail.com</a>
+                    <a href="mailto:charlotte.limwt@gmail.com"><?= $email ?></a>
                 </address>
             </form>
         </div>
