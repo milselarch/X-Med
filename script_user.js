@@ -96,12 +96,7 @@ $(document).ready(function () {
             $("tr[name='google']").css("display", "none");
         }
     });
-    
-    setTimeout(
-        function () {nameElement.trigger("input");},
-        0
-    );
-    
+
     //$('div#searchTable').height($('body').height());
     
     //Ajax call to getAll.php to get all medicine entries in database
@@ -120,7 +115,9 @@ $(document).ready(function () {
                 console.log(row.name, row.instructions);
                 addRowToTable('insert', row.name, row.instructions);
             }
-            console.log(medicines);
+            
+            //console.log(medicines);
+            nameElement.trigger("input")
         },
         error: function (xhr, desc, err) {
             console.log(xhr);

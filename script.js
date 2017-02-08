@@ -115,10 +115,12 @@ $(document).ready(function () {
         }
     });
     
+    /*
     setTimeout(
         function () {nameElement.trigger("input");},
         0
     );
+    */
     
     $('div#searchTable').height($('div#formDiv').height());
     
@@ -138,7 +140,9 @@ $(document).ready(function () {
                 console.log(row.name, row.instructions);
                 addRowToTable('insert', row.name, row.instructions);
             }
-            console.log(medicines);
+            
+            //console.log(medicines);
+            nameElement.trigger("input")
         },
         error: function (xhr, desc, err) {
             console.log(xhr);

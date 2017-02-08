@@ -32,13 +32,16 @@ and open the template in the editor.
                 <div id="content">
                     <?php
                     include_once("connect.php");
+                    
                     $cid = $_GET['cid'];
                     $topics = "";
-
+                
                     $logged = " | <a href='create_topic.php?cid=" . $cid . "'>Click Here To Create A Topic</a>";
 
                     $sql = "SELECT id FROM categories WHERE id='" . $cid . "' LIMIT 1";
                     $res = mysqli_query($con,$sql) or die(mysqli_error());
+
+                
 
                     if (mysqli_num_rows($res) == 1) {
                         $sql2 = "SELECT * FROM topics WHERE category_id='" . $cid . "' ORDER BY topic_reply_date DESC";
@@ -58,10 +61,14 @@ and open the template in the editor.
                                 $views = $row['topic_views'];
                                 $date = $row['topic_date'];
                                 $creator = $row['topic_creator'];
+                                
+                                $rsql = "SELECT count(*) as c FROM posts WHERE topic_id='" . $tid . "' LIMIT 1";
+                                $posts = mysqli_query($con, $rsql);
+                                $posts = mysqli_fetch_assoc($posts)["c"];
 
                                 $topics .= "<tr>";
                                 $topics .= "<td><a href='view_topic.php?cid=" . $cid . "&tid=" . $tid . "'>" . $title . "</a><br/> <span class='post_info'> Posted by: " . $creator . " on " . $date . "</span>";
-                                $topics .= "<td align='center'>0</td><td align='center'>".$views."</td>";
+                                $topics .= "<td align='center'>" . $posts . "</td><td align='center'>".$views."</td>";
                                 $topics .= "</tr>";
 
                             }

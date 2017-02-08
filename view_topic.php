@@ -43,8 +43,7 @@
 
                             while ($row2 = mysqli_fetch_assoc($res2)){
                                 echo "<tr><td valign ='top'><div>".$row['topic_title']."<br/ >"
-                                    . "by ".$row2['post_creator']." - ".$row2['post_date']."<hr class='forum' />".$row2['post_content']."</div></td><td width='200' valign='top'"
-                                    . "align='center'>User Info Here</td></tr><tr><td colspan='2'</td></tr>";
+                                    . "by ".$row2['post_creator']." - ".$row2['post_date']."<hr class='forum' />".$row2['post_content']."</div></td></tr><tr><td colspan='2'</td></tr>";
                             }
 
                             $old_views = $row['topic_views'];

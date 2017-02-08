@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Feb 08, 2017 at 01:08 AM
+-- Generation Time: Feb 08, 2017 at 12:04 PM
 -- Server version: 5.5.54-0ubuntu0.14.04.1
 -- PHP Version: 5.5.9-1ubuntu4.20
 
@@ -58,7 +58,7 @@ INSERT INTO `buisness_info` (`type`, `info`, `ID`) VALUES
 ('office', '795 Folsom Ave, Suite 600\nSan Francisco, CA 94107\nP: (+65) 9709 3827', 1),
 ('email', 'support.xmed@xmed.com', 2),
 ('what', 'X-MED is a free to edit user database for medicine. Users can view and contribute to X-Med growing databases for educational purposes. We provide easy-to-read, in-depth, authoritative medical information for consumers via its robust, user-friendly, interactive website.', 3),
-('who', 'X-Med is created by three students, Charles, KK and Charlotte.', 4);
+('who', 'X-Med is created by three students, Charles, KK and Charlotte', 4);
 
 -- --------------------------------------------------------
 
@@ -320,12 +320,12 @@ CREATE TABLE IF NOT EXISTS `topics` (
 INSERT INTO `topics` (`id`, `category_id`, `topic_title`, `topic_creator`, `topic_last_user`, `topic_date`, `topic_reply_date`, `topic_views`) VALUES
 (3, 2, 'Edgar Allen Poe', 'potato', 'potato', '2017-02-03 14:46:59', '2017-02-03 14:46:59', 18),
 (4, 1, 'Medicines', 'potato', 'potato', '2017-02-03 14:59:20', '2017-02-05 21:25:39', 28),
-(6, 2, 'William Blake', 'potato', 'potato', '2017-02-03 20:33:49', '2017-02-06 16:42:19', 91),
+(6, 2, 'William Blake', 'potato', 'potato', '2017-02-03 20:33:49', '2017-02-06 16:42:19', 92),
 (7, 2, 'I like potatos', 'potato', 'potato', '2017-02-05 10:40:06', '2017-02-05 12:29:38', 13),
 (8, 2, 'test', 'milselarch', '', '2017-02-05 12:31:40', '2017-02-05 12:31:40', 4),
 (9, 1, 'do we like forums?', 'potato', 'blobuser', '2017-02-05 13:28:18', '2017-02-05 21:06:32', 46),
 (10, 2, 's', 'Deunitato', 'Deunitato', '2017-02-05 15:05:19', '2017-02-05 15:05:34', 4),
-(11, 2, 'Why we should make america great again', 'trump', 'potato', '2017-02-05 21:32:02', '2017-02-05 22:29:13', 8);
+(11, 2, 'Why we should make america great again', 'trump', 'potato', '2017-02-05 21:32:02', '2017-02-05 22:29:13', 9);
 
 -- --------------------------------------------------------
 
